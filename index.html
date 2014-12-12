@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title> Diagram Create </title>
+		<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.min.css" />
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+		<style type="text/css">
+			 .draggable { width: 150px; height: 150px; padding: 0.5em; }
+			 .drag-area { 
+			     width: 80%; 
+				 height: 80%;
+				 border: 1px solid black;
+			 }
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$('.draggable').draggable({
+					containment: ".drag-area",
+					cursor: "move",
+					cursorAt: { top: 56, left: 56 }
+				});
+			});		
+		</script>
+
+	</head>
+	<body>
+		<div class="drag-area">
+			<div class="draggable ui-widget-content">
+				<p>Drag me around</p>
+			</div>
+		</div>
+	
+	</body>
+
+</html>
