@@ -1,36 +1,98 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title> Diagram Create </title>
-		<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.min.css" />
+<head>
+	<title> Diagram Create </title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
-		<style type="text/css">
-			 .draggable { width: 150px; height: 150px; padding: 0.5em; }
-			 .drag-area { 
-			     width: 80%; 
-				 height: 80%;
-				 border: 1px solid black;
-			 }
-		</style>
-		<script type="text/javascript">
-			$(function(){
-				$('.draggable').draggable({
-					containment: ".drag-area",
-					cursor: "move",
-					cursorAt: { top: 56, left: 56 }
-				});
-			});		
-		</script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.min.css" />
 
-	</head>
-	<body>
-		<div class="drag-area">
-			<div class="draggable ui-widget-content">
-				<p>Drag me around</p>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
+	<script src="bootstrap/bootstrap.min.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<style type="text/css">
+		 .draggable,.draggable-menu { width: 150px; height: 150px; padding: 0.5em; }
+		 .drag-area {
+			 border: 1px solid black;
+			 height: 600px;
+		 }
+	</style>
+	<script type="text/javascript">
+		var param = {
+			containment: ".drag-area",
+			cursor: "move",
+			cursorAt: { top: 56, left: 56 }
+		};
+		function Entity(){
+			this.element = $('<div class="draggable ui-widget-content" />')
+			this.element.html('New').draggable(param);
+		}
+		Entity.prototype.getElement = function(){
+			return this.element;
+		}
+
+		$(function(){
+			$('.draggable').draggable(param);
+			$('.drag-area').click(function(e){
+				var self = $(this);
+				var button = $('.buttons-box button.active');
+				if(button.length){
+					var entity = new Entity();
+					self.append(entity.getElement());
+					button.removeClass('active');
+				    self.css('cursor','');
+				}
+			});
+			$('.buttons-box button').click(function(){
+			   $('.drag-area').css('cursor','crosshair');
+			   $(this).addClass('active');
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Diagram Creater</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="new_map" href="#">New Diagram</a></li>
+                    <li><a class="build" href="#">Build SQL</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<div class="container">
+		<form id="form-buttons" >
+			<div class="btn-group buttons-box" role="group">
+				<button type="button" class="btn btn-default" value="entity">Entity</button>
 			</div>
-		</div>
-	
-	</body>
+		</form>
+		<div class="drag-area"></div>
+	</div>
+
+</body>
 
 </html>
