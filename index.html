@@ -31,30 +31,58 @@
 		 }
 	</style>
 	<script type="text/javascript">
-		var param = {
-			containment: ".drag-area",
-			cursor: "move",
-			cursorAt: { top: 56, left: 56 }
-		};
+		function getParams(){
+			return {
+				containment: ".drag-area",
+				cursor: "move",
+				cursorAt: { top: 56, left: 56 },
+				scroll: true,
+				stack: ".draggable",
+			};
+		}
 		function Entity(){
+			var param = getParams();
 			this.element = $('<div class="draggable ui-widget-content" />')
 			this.element.html('New').draggable(param);
 		}
 		Entity.prototype.getElement = function(){
 			return this.element;
 		}
+		Entity.prototype.setPosition = function(pos){
+			var pos_e = this.element.position();
+		    var pos_area = $('.drag-area').position();
+			var postop = pos_area.top - pos_e.top + pos.top;
+			var posleft = pos_area.left - pos_e.left + pos.left;
+			this.element.css('top',postop).css('left',posleft);
+		}
+
+		var m_pos = {
+			x : 0,
+			y : 0
+		};
+
+		function calc_position(){
+			var pos = $('.drag-area').position();
+		    return {
+			    left : m_pos.x - pos.left,
+			    top : m_pos.y - pos.top,
+			}
+		}
 
 		$(function(){
-			$('.draggable').draggable(param);
 			$('.drag-area').click(function(e){
 				var self = $(this);
 				var button = $('.buttons-box button.active');
 				if(button.length){
 					var entity = new Entity();
 					self.append(entity.getElement());
+					entity.setPosition(calc_position());
 					button.removeClass('active');
 				    self.css('cursor','');
 				}
+			}).mousemove(function(e){
+				m_pos.x = e.pageX;
+				m_pos.y = e.pageY;
 			});
 			$('.buttons-box button').click(function(){
 			   $('.drag-area').css('cursor','crosshair');
