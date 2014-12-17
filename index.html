@@ -6,15 +6,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.min.css" />
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
-	<script src="bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- JQuery UI -->
+	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.min.css" />
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,38 +25,19 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<script type="text/javascript" src="js/entity.js"></script>
+
 	<style type="text/css">
-		 .draggable,.draggable-menu { width: 150px; height: 150px; padding: 0.5em; }
-		 .drag-area {
-			 border: 1px solid black;
-			 height: 600px;
-		 }
+		.draggable {
+		    width: 100px;
+		    height: 100px;
+		}
+		.drag-area {
+			border: 1px solid black;
+			height: 600px;
+		}
 	</style>
 	<script type="text/javascript">
-		function getParams(){
-			return {
-				containment: ".drag-area",
-				cursor: "move",
-				cursorAt: { top: 56, left: 56 },
-				scroll: true,
-				stack: ".draggable",
-			};
-		}
-		function Entity(){
-			var param = getParams();
-			this.element = $('<div class="draggable ui-widget-content" />')
-			this.element.html('New').draggable(param);
-		}
-		Entity.prototype.getElement = function(){
-			return this.element;
-		}
-		Entity.prototype.setPosition = function(pos){
-			var pos_e = this.element.position();
-		    var pos_area = $('.drag-area').position();
-			var postop = pos_area.top - pos_e.top + pos.top;
-			var posleft = pos_area.left - pos_e.left + pos.left;
-			this.element.css('top',postop).css('left',posleft);
-		}
 
 		var m_pos = {
 			x : 0,
@@ -72,27 +55,76 @@
 		$(function(){
 			$('.drag-area').click(function(e){
 				var self = $(this);
-				var button = $('.buttons-box button.active');
-				if(button.length){
-					var entity = new Entity();
-					self.append(entity.getElement());
-					entity.setPosition(calc_position());
-					button.removeClass('active');
-				    self.css('cursor','');
+				var radio = $('.buttons-box :radio:checked');
+				if(radio.length){
+					if(radio.val() == 'entity'){
+						/*var modal = $('<div id="modal" class="modal" role="dialog"/>');
+						$(document).prepend(modal);
+						modal.modal({
+						});
+						modal.html('teste');
+						 */
+						$('.modal').modal();
+						var entity = new Entity({containment : '.drag-area'});
+						$('input[type=hidden][name=id_entity]').val(entity.getId());
+						$('.form-entity input#entity-name').val('')
+						self.append(entity.getElement());
+						entity.setPosition(calc_position());
+						$('.buttons-box :radio[value=move]').click();
+					}
 				}
 			}).mousemove(function(e){
 				m_pos.x = e.pageX;
 				m_pos.y = e.pageY;
 			});
-			$('.buttons-box button').click(function(){
-			   $('.drag-area').css('cursor','crosshair');
-			   $(this).addClass('active');
+			$('.buttons-box :radio').change(function(){
+				var val = $(this).val();
+				if(val == 'move'){
+					$('.drag-area').css('cursor','');
+				} else if(val == 'entity'){
+					$('.drag-area').css('cursor','crosshair');
+				}
+			});
+			$('button[name=save-entity]').click(function(e){
+				e.preventDefault();
+				var form = $('form.form-entity');
+				var entity = $('#' + form.find('input[name=id_entity]').val())
+				var name = form.find('input#entity-name').val()
+				entity.find('.panel-heading').html( name );
+				$('.modal').modal('hide');
 			});
 		});
 	</script>
 
 </head>
 <body>
+
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title" id="exampleModalLabel">New Entity</h4>
+		  </div>
+		  <div class="modal-body">
+			<form class="form-entity" role="form">
+				<input type="hidden" name="id_entity" value="">
+			  <div class="form-group">
+				<label for="entity-name" class="control-label">Name:</label>
+				<input type="text" class="form-control" id="entity-name" >
+			  </div>
+			</form>
+		  </div>
+		  <div class="modal-footer">
+			<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" name="save-entity">Save</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
 	<div class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -114,8 +146,15 @@
     </div>
 	<div class="container">
 		<form id="form-buttons" >
-			<div class="btn-group buttons-box" role="group">
-				<button type="button" class="btn btn-default" value="entity">Entity</button>
+			<div class="btn-group buttons-box" data-toggle="buttons">
+				<label for="bmove" class="btn btn-default active">
+					<input type="radio" name="radio" id="bmove" value="move" checked="checked"/>
+					<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+				</label>
+				<label for="bentity" class="btn btn-default">
+					<input type="radio" name="radio" id="bentity" value="entity"/>
+					Entity
+				</label>
 			</div>
 		</form>
 		<div class="drag-area"></div>
