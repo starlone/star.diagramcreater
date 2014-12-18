@@ -58,12 +58,6 @@
 				var radio = $('.buttons-box :radio:checked');
 				if(radio.length){
 					if(radio.val() == 'entity'){
-						/*var modal = $('<div id="modal" class="modal" role="dialog"/>');
-						$(document).prepend(modal);
-						modal.modal({
-						});
-						modal.html('teste');
-						 */
 						$('.modal').modal();
 						var entity = new Entity({containment : '.drag-area'});
 						$('input[type=hidden][name=id_entity]').val(entity.getId());
@@ -85,13 +79,14 @@
 					$('.drag-area').css('cursor','crosshair');
 				}
 			});
-			$('button[name=save-entity]').click(function(e){
+			$('form.form-entity').submit(function(e){
 				e.preventDefault();
-				var form = $('form.form-entity');
+				var form = $(this);
 				var entity = $('#' + form.find('input[name=id_entity]').val())
-				var name = form.find('input#entity-name').val()
+				var name = form.find('input#entity-name').val();
 				entity.find('.panel-heading').html( name );
 				$('.modal').modal('hide');
+
 			});
 		});
 	</script>
@@ -101,27 +96,27 @@
 
 
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title" id="exampleModalLabel">New Entity</h4>
-		  </div>
-		  <div class="modal-body">
-			<form class="form-entity" role="form">
-				<input type="hidden" name="id_entity" value="">
-			  <div class="form-group">
-				<label for="entity-name" class="control-label">Name:</label>
-				<input type="text" class="form-control" id="entity-name" >
-			  </div>
-			</form>
-		  </div>
-		  <div class="modal-footer">
-			<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary" name="save-entity">Save</button>
-		  </div>
-		</div>
-	  </div>
+		<form class="form-entity" role="form">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="exampleModalLabel">New Entity</h4>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" name="id_entity" value="">
+						<div class="form-group">
+							<label for="entity-name" class="control-label">Name:</label>
+							<input type="text" class="form-control" id="entity-name" >
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary" name="save-entity">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 
 
