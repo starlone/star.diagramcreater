@@ -44,3 +44,11 @@ Entity.prototype.setPosition = function(pos){
 	this.element.css('top',postop).css('left',posleft);
 }
 
+Entity.prototype.getSQL = function(){
+	var txt = 'CREATE TABLE ';
+	txt += this.name;
+	txt += '\n{';
+	txt += '\n};\n';
+	return txt;
+}
+

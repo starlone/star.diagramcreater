@@ -42,3 +42,7 @@ DragArea.prototype.calcMousePosition = function(m_pos){
 DragArea.prototype.getChild = function(id){
 	return this.children[id];
 }
+
+DragArea.prototype.getChildren = function(){
+	return this.children;
+}
