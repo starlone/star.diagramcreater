@@ -3,6 +3,10 @@ function Column(name,type){
 	this.type = type;
 }
 
+Column.prototype.getSQL = function(){
+    return this.name + ' ' + this.type;
+}
+
 function Entity(options){
 	this.containment = ".drag-area";
 	this.name = 'Entity';
@@ -28,7 +32,8 @@ function Entity(options){
 	this.element.append(phead)
 	            .append(ptable);
 
-	this.newColumn('id','int');
+	this.newColumn('id','SERIAL');
+	this.newColumn('name','CHAR');
 
 	this.element.draggable({
 		containment: this.containment,
@@ -60,7 +65,13 @@ Entity.prototype.setPosition = function(pos){
 Entity.prototype.getSQL = function(){
 	var txt = 'CREATE TABLE ';
 	txt += this.name;
-	txt += '\n{';
+	txt += '\n{\n\t';
+	var lista = [];
+	for(var i in this.columns){
+	    var c = this.columns[i];
+		lista.push(c.getSQL());
+	}
+	txt += lista.join(',\n\t');
 	txt += '\n};\n';
 	return txt;
 }
