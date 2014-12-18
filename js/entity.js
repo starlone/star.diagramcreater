@@ -1,14 +1,17 @@
 
 function Entity(options){
 	this.containment = ".drag-area";
+	this.name = 'Entity';
 	if(options){
-		if(options.containment){
+		if(options.containment)
 			containment = options.containment;
-		}
+		if(options.name)
+			this.name = options.name;
 	}
-	this.element = $('<div class="entity draggable panel panel-default ui-widget-content" />')
+	this.element = $('<div />');
+	this.element.attr('class','entity draggable panel panel-default ui-widget-content');
 	var phead = $('<div class="panel-heading" />');
-	phead.html('New');
+	phead.html(this.name);
 	var pbody = $('<div class="panel-body" />');
 
 	this.element.attr('id','entity-' + $('.entity').length + 1);
@@ -29,6 +32,10 @@ Entity.prototype.getElement = function(){
 Entity.prototype.getId = function(){
 	return this.element.attr('id');
 }
+Entity.prototype.setName = function(name){
+	this.name = name;
+	this.element.find('.panel-heading').html( name );
+}
 Entity.prototype.setPosition = function(pos){
 	var pos_e = this.element.position();
 	var pos_area = $(this.containment).position();
@@ -36,3 +43,4 @@ Entity.prototype.setPosition = function(pos){
 	var posleft = pos_area.left - pos_e.left + pos.left;
 	this.element.css('top',postop).css('left',posleft);
 }
+
