@@ -1,3 +1,7 @@
+function Column(name,type){
+	this.name = name;
+	this.type = type;
+}
 
 function Entity(options){
 	this.containment = ".drag-area";
@@ -8,20 +12,27 @@ function Entity(options){
 		if(options.name)
 			this.name = options.name;
 	}
+	this.columns = [];
 	this.element = $('<div />');
 	this.element.attr('class','entity draggable panel panel-default ui-widget-content');
 	var phead = $('<div class="panel-heading" />');
 	phead.html(this.name);
-	var pbody = $('<div class="panel-body" />');
+
+	//var pbody = $('<div class="panel-body" />');
+	var ptable = $('<table class="table" />');
+	var ptbody = $('<tbody />');
+	ptable.append(ptbody);
 
 	this.element.attr('id','entity-' + $('.entity').length + 1);
 
-	this.element.append(phead).append(pbody);
+	this.element.append(phead)
+	            .append(ptable);
+
+	this.newColumn('id','int');
 
 	this.element.draggable({
 		containment: this.containment,
 		cursor: "move",
-		cursorAt: { top: 56, left: 56 },
 		scroll: true,
 		stack: ".draggable",
 	});
@@ -33,8 +44,10 @@ Entity.prototype.getId = function(){
 	return this.element.attr('id');
 }
 Entity.prototype.setName = function(name){
-	this.name = name;
-	this.element.find('.panel-heading').html( name );
+	if (name){
+		this.name = name;
+		this.element.find('.panel-heading').html( name );
+	}
 }
 Entity.prototype.setPosition = function(pos){
 	var pos_e = this.element.position();
@@ -50,5 +63,15 @@ Entity.prototype.getSQL = function(){
 	txt += '\n{';
 	txt += '\n};\n';
 	return txt;
+}
+
+Entity.prototype.newColumn = function(name,type){
+	var c = new Column(name,type);
+	this.columns.push(c);
+	var tr = $('<tr />');
+	var td_name = $('<td />').html(name);
+	var td_type = $('<td />').html(type);
+	this.element.find('tbody').append(tr);
+	tr.append(td_name).append(td_type);
 }
 
