@@ -1,6 +1,7 @@
 
 function DragArea(options){
 	this.selector = ".drag-area";
+	var self = this;
 	if(options){
 		if(options.selector){
 			this.selector = options.selector;
@@ -8,6 +9,15 @@ function DragArea(options){
 	}
 	this.element = $(this.selector);
 	this.children = {};
+
+	this.m_pos = { x : 0, y : 0 };
+
+	this.element.mousemove(function(e){
+		self.m_pos.x = e.pageX;
+		self.m_pos.y = e.pageY;
+	});
+
+
 }
 
 DragArea.prototype.addChild = function(child){
@@ -20,14 +30,10 @@ DragArea.prototype.newEntity = function(options){
 	var self = this;
 	var pos = null;
 	if(options){
-		if(options.m_pos){
-			pos = options.m_pos;
-		}
 	}
 	var entity = new Entity({containment : this.selector});
 	this.addChild(entity);
-	if (pos)
-		entity.setPosition(this.calcMousePosition(pos));
+	entity.setPosition(this.calcMousePosition());
 
 	entity.getElement().find('button.bclose').click(function(e){
 	    e.preventDefault();
@@ -37,11 +43,11 @@ DragArea.prototype.newEntity = function(options){
 	return entity;
 }
 
-DragArea.prototype.calcMousePosition = function(m_pos){
+DragArea.prototype.calcMousePosition = function(){
 	var pos = this.element.position();
 	return {
-		left : m_pos.x - pos.left,
-		top : m_pos.y - pos.top,
+		left : this.m_pos.x - pos.left,
+		top : this.m_pos.y - pos.top,
 	}
 }
 

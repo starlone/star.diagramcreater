@@ -1,23 +1,17 @@
 $(function(){
-	var m_pos = { x : 0, y : 0 };
 	var area = new DragArea({selector : '.drag-area'});
 	$('.drag-area').click(function(e){
 		var self = $(this);
 		var radio = $('.buttons-box :radio:checked');
 		if(radio.length){
 			if(radio.val() == 'entity'){
-				var entity = area.newEntity({
-					m_pos : m_pos
-				});
+				var entity = area.newEntity();
 				$('#modal-entity').modal();
 				$('input[type=hidden][name=id_entity]').val(entity.getId());
 				$('.form-entity input#entity-name').val('')
 				$('.buttons-box :radio[value=move]').click();
 			}
 		}
-	}).mousemove(function(e){
-		m_pos.x = e.pageX;
-		m_pos.y = e.pageY;
 	});
 	$('.buttons-box :radio').change(function(){
 		var val = $(this).val();
