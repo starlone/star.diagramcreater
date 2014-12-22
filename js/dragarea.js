@@ -17,6 +17,7 @@ DragArea.prototype.addChild = function(child){
 
 
 DragArea.prototype.newEntity = function(options){
+	var self = this;
 	var pos = null;
 	if(options){
 		if(options.m_pos){
@@ -27,6 +28,12 @@ DragArea.prototype.newEntity = function(options){
 	this.addChild(entity);
 	if (pos)
 		entity.setPosition(this.calcMousePosition(pos));
+
+	entity.getElement().find('button.bclose').click(function(e){
+	    e.preventDefault();
+		var eid = $(this).parents('.entity').attr('id');
+		self.rmChild(eid);
+	});
 	return entity;
 }
 
@@ -45,4 +52,10 @@ DragArea.prototype.getChild = function(id){
 
 DragArea.prototype.getChildren = function(){
 	return this.children;
+}
+
+DragArea.prototype.rmChild = function(cid){
+	var child = this.getChild(cid);
+	child.element.remove();
+	delete this.children[cid];
 }

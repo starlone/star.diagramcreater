@@ -19,8 +19,27 @@ function Entity(options){
 	this.columns = [];
 	this.element = $('<div />');
 	this.element.attr('class','entity draggable panel panel-default ui-widget-content');
+
+	// HEAD
 	var phead = $('<div class="panel-heading" />');
-	phead.html(this.name);
+
+	var etitle = $('<span />').html(this.name);
+	phead.append(etitle);
+
+	var pbuttons = $('<div class="pbuttons pull-right" >');
+/*
+	var bedit = $('<button class=""/>');
+	bedit.append( $('<span class="glyphicon glyphicon-pencil" />') );
+	pbuttons.append(bedit);
+*/
+	var bclose = $('<button class="bclose" />');
+	bclose.append( $('<span class="glyphicon glyphicon-remove" />') );
+	pbuttons.append(bclose);
+
+
+	phead.append(pbuttons);
+
+	// BODY
 
 	//var pbody = $('<div class="panel-body" />');
 	var ptable = $('<table class="table" />');
