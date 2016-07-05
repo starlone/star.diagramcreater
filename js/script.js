@@ -40,7 +40,12 @@ $(function(){
         }
         var modal = $('#modal-sql');
         modal.find('.modal-body code').html(sql);
-        modal.modal();
+        modal[0].showModal();
     });
+    var modal = $('#modal-sql');
+    modal.find('.close').click(function(){
+        modal[0].close();
+    });;
+    modal.querySelector('.close');
 });
 
