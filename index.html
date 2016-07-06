@@ -36,29 +36,17 @@
 
     <dialog class="mdl-dialog" id="modal-entity">
         <form class="form-entity" role="form">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="exampleModalLabel">New Entity</h4>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="id_entity" value="">
-                        <div class="form-group">
-                            <label for="entity-name" class="control-label">Name:</label>
-                            <input type="text" class="form-control" id="entity-name" >
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default"
-                                data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"
-                                name="save-entity">Save</button>
-                    </div>
+            <h4 class="mdl-dialog__title">New Entity</h4>
+            <div class="mdl-dialog__content">
+                <input type="hidden" name="id_entity" value="">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input type="text" class="mdl-textfield__input" id="entity-name" >
+                    <label for="entity-name" class="mdl-textfield__label">Name:</label>
                 </div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button close">Close</button>
+                <button type="submit" class="mdl-button" name="save-entity">Save</button>
             </div>
         </form>
     </dialog>

@@ -6,7 +6,7 @@ $(function(){
         if(radio.length){
             if(radio.val() == 'entity'){
                 var entity = area.newEntity();
-                $('#modal-entity').modal();
+                document.querySelector('#modal-entity').showModal();
                 $('input[type=hidden][name=id_entity]').val(entity.getId());
                 $('.form-entity input#entity-name').val('')
                 $('.buttons-box :radio[value=move]').click();
@@ -28,7 +28,7 @@ $(function(){
         var entity = area.getChild(id_entity);
         var name = form.find('input#entity-name').val();
         entity.setName(name);
-        $('#modal-entity').modal('hide');
+        document.querySelector('#modal-entity').close();
     });
     $('.build_sql').click(function(e){
         e.preventDefault();
@@ -42,10 +42,8 @@ $(function(){
         modal.find('.modal-body code').html(sql);
         modal[0].showModal();
     });
-    var modal = $('#modal-sql');
-    modal.find('.close').click(function(){
-        modal[0].close();
-    });;
-    modal.querySelector('.close');
+    $('dialog .close').click(function(){
+        $(this).parents('dialog')[0].close();
+    });
 });
 
