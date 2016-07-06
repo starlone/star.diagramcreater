@@ -18,38 +18,36 @@ function Entity(options){
     }
     this.columns = [];
     this.element = $('<div />');
-    this.element.attr('class','entity draggable panel panel-default');
+    this.element.attr('class','entity draggable mdl-card mdl-shadow--2dp');
 
     // HEAD
-    var phead = $('<div class="panel-heading" />');
+    var phead = $('<div class="mdl-card__title" />');
 
-    var etitle = $('<span class="entity-title" />').html(this.name);
+    var etitle = $('<h2 class="entity-title mdl-card__title-text" />').html(this.name);
     phead.append(etitle);
 
-    var pbuttons = $('<div class="pbuttons pull-right" >');
+    var pbuttons = $('<div class="pbuttons mdl-card__menu" >');
 /*
     var bedit = $('<button class=""/>');
     bedit.append( $('<span class="glyphicon glyphicon-pencil" />') );
     pbuttons.append(bedit);
 */
-    var bclose = $('<button class="bclose" />');
-    bclose.append( $('<span class="glyphicon glyphicon-remove" />') );
+
+    var bclose = $('<button class="bclose mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" />');
+    bclose.append( $('<i class="material-icons" />').text('delete') );
     pbuttons.append(bclose);
-
-
-    phead.append(pbuttons);
 
     // BODY
 
-    //var pbody = $('<div class="panel-body" />');
-    var ptable = $('<table class="table" />');
+    var ptable = $('<table class="mdl-card__supporting-text mdl-data-table mdl-js-data-table" />');
     var ptbody = $('<tbody />');
     ptable.append(ptbody);
 
     this.element.attr('id','entity-' + $('.entity').length + 1);
 
     this.element.append(phead)
-                .append(ptable);
+                .append(ptable)
+                .append(pbuttons);
 
     this.newColumn('id','SERIAL');
     this.newColumn('name','CHAR');
@@ -70,7 +68,7 @@ Entity.prototype.getId = function(){
 Entity.prototype.setName = function(name){
     if (name){
         this.name = name;
-        this.element.find('.panel-heading .entity-title').html( name );
+        this.element.find('.entity-title').html( name );
     }
 }
 Entity.prototype.setPosition = function(pos){
