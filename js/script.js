@@ -39,11 +39,12 @@ $(function(){
             sql += child.getSQL();
         }
         var modal = $('#modal-sql');
-        modal.find('.modal-body code').html(sql);
+        modal.find('code').html(sql);
         modal[0].showModal();
     });
     $('dialog .close').click(function(){
         $(this).parents('dialog')[0].close();
     });
+    $('.buttons-box').buttonset();
 });
 

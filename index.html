@@ -38,6 +38,9 @@
         table.mdl-data-table tbody td {
             padding: 8px;
         }
+        .page-content{
+            padding: 30px;
+        }
     </style>
 
 </head>
@@ -91,19 +94,15 @@
         </div>
         <main class="mdl-layout__content">
             <div class="page-content">
-                <form id="form-buttons" >
-                    <div class="btn-group buttons-box" data-toggle="buttons">
-                        <label for="bmove" class="btn btn-default active">
-                            <input type="radio" name="radio" id="bmove" value="move" checked="checked"/>
-                            <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
-                        </label>
-                        <label for="bentity" class="btn btn-default">
-                            <input type="radio" name="radio" id="bentity" value="entity"/>
-                            Entity
-                        </label>
+                <section>
+                    <div class="buttons-box">
+                        <input type="radio" value="move" id="bmove" name="baction" checked="checked"/><label for="bmove">Move</label>
+                        <input type="radio" value="entity" id="bentity" name="baction" /><label for="bentity">New Entity</label>
                     </div>
-                </form>
-                <div class="drag-area"></div>
+                </section>
+                <section>
+                    <div class="drag-area"></div>
+                </section>
             </div>
         </main>
     </div>
