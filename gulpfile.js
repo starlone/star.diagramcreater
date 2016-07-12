@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
-gulp.task('build', function() {
+gulp.task('default', function() {
     return gulp
             .src(['src/**/*.js'])
             .pipe(uglify())
