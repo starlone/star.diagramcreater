@@ -1,22 +1,20 @@
-function Column(name,type){
-    this.name = name;
-    this.type = type;
-}
-
-Column.prototype.getSQL = function(){
-    return this.name + ' ' + this.type;
-}
 
 function Entity(options){
-    this.containment = ".drag-area";
-    this.name = 'Entity';
-    if(options){
-        if(options.containment)
-            containment = options.containment;
-        if(options.name)
-            this.name = options.name;
-    }
+    this.name = options.name || 'Entity';
     this.columns = [];
+}
+
+Entity.prototype.newColumn = function(name, type){
+    var c = new Column(name,type);
+    this.columns.push(c);
+}
+
+function EntityMDL(options){
+    this.containment = options.containment || ".drag-area";
+    var name = options.name || 'Entity';
+
+    this.entity = new Entity({name: name});
+
     this.element = $('<div />');
     this.element.attr('class','entity draggable mdl-card mdl-shadow--2dp');
 
@@ -25,7 +23,7 @@ function Entity(options){
     // HEAD
     var phead = $('<div class="mdl-card__title" />');
 
-    var etitle = $('<h2 class="entity-title mdl-card__title-text" />').html(this.name);
+    var etitle = $('<h2 class="entity-title mdl-card__title-text" />').html(this.entity.name);
     phead.append(etitle);
 
     var pbuttons = $('<div class="pbuttons mdl-card__menu" >');
@@ -55,7 +53,7 @@ function Entity(options){
     var ptbody = $('<tbody />');
     ptable.append(ptbody);
 
-    this.element.attr('id','entity-' + $('.entity').length + 1);
+    this.element.attr('id','entity-' + id);
 
     this.element.append(phead)
                 .append(ptable)
@@ -71,19 +69,19 @@ function Entity(options){
         stack: ".draggable",
     });
 }
-Entity.prototype.getElement = function(){
+EntityMDL.prototype.getElement = function(){
     return this.element;
 }
-Entity.prototype.getId = function(){
+EntityMDL.prototype.getId = function(){
     return this.element.attr('id');
 }
-Entity.prototype.setName = function(name){
+EntityMDL.prototype.setName = function(name){
     if (name){
-        this.name = name;
+        this.entity.name = name;
         this.element.find('.entity-title').html( name );
     }
 }
-Entity.prototype.setPosition = function(pos){
+EntityMDL.prototype.setPosition = function(pos){
     var pos_e = this.element.position();
     var pos_area = $(this.containment).position();
     var postop = pos_area.top - pos_e.top + pos.top;
@@ -91,13 +89,13 @@ Entity.prototype.setPosition = function(pos){
     this.element.css('top',postop).css('left',posleft);
 }
 
-Entity.prototype.getSQL = function(){
+EntityMDL.prototype.getSQL = function(){
     var txt = 'CREATE TABLE ';
-    txt += this.name;
+    txt += this.entity.name;
     txt += '\n{\n    ';
     var lista = [];
-    for(var i in this.columns){
-        var c = this.columns[i];
+    for(var i in this.entity.columns){
+        var c = this.entity.columns[i];
         lista.push(c.getSQL());
     }
     txt += lista.join(',\n    ');
@@ -105,9 +103,8 @@ Entity.prototype.getSQL = function(){
     return txt;
 }
 
-Entity.prototype.newColumn = function(name,type){
-    var c = new Column(name,type);
-    this.columns.push(c);
+EntityMDL.prototype.newColumn = function(name,type){
+    this.entity.newColumn(name, type);
     var tr = $('<tr />');
     var td_name = $('<td />').html(name);
     var td_type = $('<td />').html(type);
@@ -115,3 +112,11 @@ Entity.prototype.newColumn = function(name,type){
     tr.append(td_name).append(td_type);
 }
 
+function Column(name,type){
+    this.name = name;
+    this.type = type;
+}
+
+Column.prototype.getSQL = function(){
+    return this.name + ' ' + this.type;
+}

@@ -1,12 +1,7 @@
 
 function DragArea(options){
-    this.selector = ".drag-area";
     var self = this;
-    if(options){
-        if(options.selector){
-            this.selector = options.selector;
-        }
-    }
+    this.selector = options.selector || ".drag-area";
     this.element = $(this.selector);
     this.children = {};
 
@@ -31,7 +26,7 @@ DragArea.prototype.newEntity = function(options){
     var pos = null;
     if(options){
     }
-    var entity = new Entity({containment : this.selector});
+    var entity = new EntityMDL({containment : this.selector});
     this.addChild(entity);
     entity.setPosition(this.calcMousePosition());
 
