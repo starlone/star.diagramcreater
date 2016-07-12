@@ -20,6 +20,8 @@ function Entity(options){
     this.element = $('<div />');
     this.element.attr('class','entity draggable mdl-card mdl-shadow--2dp');
 
+    var id = $('.entity').length + 1;
+
     // HEAD
     var phead = $('<div class="mdl-card__title" />');
 
@@ -33,9 +35,19 @@ function Entity(options){
     pbuttons.append(bedit);
 */
 
-    var bclose = $('<button class="bclose mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" />');
-    bclose.append( $('<i class="material-icons" />').text('delete') );
-    pbuttons.append(bclose);
+/*
+    var button = $('<button class="mdl-button mdl-js-button mdl-button--icon"> <i class="material-icons">more_vert</i></button>');
+    button.attr('id','bentity-' + id);
+    this.element.append(button);
+
+    var menu = $('<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" />');
+    menu.attr('for', button.attr('id'));
+    menu.append($('<li class="mdl-menu__item"> Excluir</li>'));
+    this.element.append(menu);
+*/
+    var bdelete = $('<button class="bclose mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" />');
+    bdelete.append( $('<i class="material-icons" />').text('delete') );
+    pbuttons.append(bdelete);
 
     // BODY
 
