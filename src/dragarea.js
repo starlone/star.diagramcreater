@@ -18,8 +18,7 @@ function DragArea(options){
 DragArea.prototype.addChild = function(child){
     this.children[child.getId()] = child;
     this.element.append(child.getElement());
-}
-
+};
 
 DragArea.prototype.newEntity = function(options){
     var self = this;
@@ -36,27 +35,27 @@ DragArea.prototype.newEntity = function(options){
         self.rmChild(eid);
     });
     return entity;
-}
+};
 
 DragArea.prototype.calcMousePosition = function(){
     var pos = this.element.position();
     return {
         left : this.m_pos.x - pos.left,
         top : this.m_pos.y - pos.top,
-    }
-}
+    };
+};
 
 
 DragArea.prototype.getChild = function(id){
     return this.children[id];
-}
+};
 
 DragArea.prototype.getChildren = function(){
     return this.children;
-}
+};
 
 DragArea.prototype.rmChild = function(cid){
     var child = this.getChild(cid);
     child.element.remove();
     delete this.children[cid];
-}
+};

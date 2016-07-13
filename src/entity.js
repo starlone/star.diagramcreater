@@ -7,7 +7,7 @@ function Entity(options){
 Entity.prototype.newColumn = function(name, type){
     var c = new Column(name,type);
     this.columns.push(c);
-}
+};
 
 function EntityMDL(options){
     this.containment = options.containment || ".drag-area";
@@ -69,25 +69,29 @@ function EntityMDL(options){
         stack: ".draggable",
     });
 }
+
 EntityMDL.prototype.getElement = function(){
     return this.element;
-}
+};
+
 EntityMDL.prototype.getId = function(){
     return this.element.attr('id');
-}
+};
+
 EntityMDL.prototype.setName = function(name){
     if (name){
         this.entity.name = name;
         this.element.find('.entity-title').html( name );
     }
-}
+};
+
 EntityMDL.prototype.setPosition = function(pos){
     var pos_e = this.element.position();
     var pos_area = $(this.containment).position();
     var postop = pos_area.top - pos_e.top + pos.top;
     var posleft = pos_area.left - pos_e.left + pos.left;
     this.element.css('top',postop).css('left',posleft);
-}
+};
 
 EntityMDL.prototype.getSQL = function(){
     var txt = 'CREATE TABLE ';
@@ -101,7 +105,7 @@ EntityMDL.prototype.getSQL = function(){
     txt += lista.join(',\n    ');
     txt += '\n};\n';
     return txt;
-}
+};
 
 EntityMDL.prototype.newColumn = function(name,type){
     this.entity.newColumn(name, type);
@@ -110,7 +114,7 @@ EntityMDL.prototype.newColumn = function(name,type){
     var td_type = $('<td />').html(type);
     this.element.find('tbody').append(tr);
     tr.append(td_name).append(td_type);
-}
+};
 
 function Column(name,type){
     this.name = name;
@@ -119,4 +123,4 @@ function Column(name,type){
 
 Column.prototype.getSQL = function(){
     return this.name + ' ' + this.type;
-}
+};

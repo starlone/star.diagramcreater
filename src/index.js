@@ -8,7 +8,7 @@ $(function(){
                 var entity = area.newEntity();
                 document.querySelector('#modal-entity').showModal();
                 $('input[type=hidden][name=id_entity]').val(entity.getId());
-                $('.form-entity input#entity-name').val('')
+                $('.form-entity input#entity-name').val('');
                 $('.buttons-box :radio[value=move]').click();
             }
         }
