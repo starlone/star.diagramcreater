@@ -1,0 +1,19 @@
+.draggable {
+  width: 150px;
+}
+.drag-area {
+  border: 1px solid black;
+  height: 600px;
+}
+.pbuttons {
+  text-align: right;
+}
+.mdl-card {
+  min-height: 150px;
+}
+table.mdl-data-table tbody td {
+  padding: 8px;
+}
+.page-content{
+  padding: 30px;
+}

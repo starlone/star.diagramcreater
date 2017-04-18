@@ -1,3 +1,60 @@
-<h1>
-  {{title}}
-</h1>
+<dialog class="mdl-dialog" id="modal-entity">
+  <form class="form-entity" role="form">
+    <h4 class="mdl-dialog__title">New Entity</h4>
+    <div class="mdl-dialog__content">
+      <input type="hidden" name="id_entity" value="">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input type="text" class="mdl-textfield__input" id="entity-name" >
+        <label for="entity-name" class="mdl-textfield__label">Name:</label>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="submit" class="mdl-button" name="save-entity">Save</button>
+      <button type="button" class="mdl-button close">Close</button>
+    </div>
+  </form>
+</dialog>
+
+
+<dialog class="mdl-dialog" id="modal-sql">
+  <h4 class="mdl-dialog__title">SQL</h4>
+  <div class="mdl-dialog__content">
+            <pre><code> </code></pre>
+</div>
+<div class="mdl-dialog__actions">
+  <button type="button" class="mdl-button close">Ok</button>
+</div>
+    </dialog>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Diagram Creater</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="new_map mdl-navigation__link" href="#">New Diagram</a>
+            <a class="build_sql mdl-navigation__link" href="#">Build SQL</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Diagram Creater</span>
+        <nav class="mdl-navigation">
+          <a class="new_map mdl-navigation__link" href="#">New Diagram</a>
+          <a class="build_sql mdl-navigation__link" href="#">Build SQL</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <section>
+            <div class="buttons-box">
+              <input type="radio" value="move" id="bmove" name="baction" checked="checked"/><label for="bmove">Move</label>
+              <input type="radio" value="entity" id="bentity" name="baction" /><label for="bentity">New Entity</label>
+            </div>
+          </section>
+          <section>
+            <div class="drag-area"></div>
+          </section>
+        </div>
+      </main>
+    </div>
