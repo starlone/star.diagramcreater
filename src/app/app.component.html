@@ -1,3 +1,39 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" ng-click="closePanels()" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Diagram Creater</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="new_map" href="" >New Diagram</a></li>
+        <li><a class="build_sql" href="" >Build SQL</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container-fluid row">
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <section>
+        <div class="buttons-box">
+          <input type="radio" value="move" id="bmove" name="baction" checked="checked"/><label for="bmove">Move</label>
+          <input type="radio" value="entity" id="bentity" name="baction" /><label for="bentity">New Entity</label>
+        </div>
+      </section>
+      <section>
+        <div class="drag-area"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
 <dialog class="mdl-dialog" id="modal-entity">
   <form class="form-entity" role="form">
     <h4 class="mdl-dialog__title">New Entity</h4>
@@ -18,65 +54,10 @@
 
 <dialog class="mdl-dialog" id="modal-sql">
   <h4 class="mdl-dialog__title">SQL</h4>
-  <div class="mdl-dialog__content">
-            <pre><code> </code></pre>
-</div>
-<div class="mdl-dialog__actions">
-  <button type="button" class="mdl-button close">Ok</button>
-</div>
-    </dialog>
+  <div class="mdl-dialog__content"><code> </code>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="mdl-button close">Ok</button>
+  </div>
+</dialog>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" ng-click="closePanels()" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Diagram Creater</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="new_map" href="" >New Diagram</a></li>
-                <li><a class="build_sql" href="" >Build SQL</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
-
-
-
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Diagram Creater</span>
-          <div class="mdl-layout-spacer"></div>
-          <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="new_map mdl-navigation__link" href="#">New Diagram</a>
-            <a class="build_sql mdl-navigation__link" href="#">Build SQL</a>
-          </nav>
-        </div>
-      </header>
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Diagram Creater</span>
-        <nav class="mdl-navigation">
-          <a class="new_map mdl-navigation__link" href="#">New Diagram</a>
-          <a class="build_sql mdl-navigation__link" href="#">Build SQL</a>
-        </nav>
-      </div>
-      <main class="mdl-layout__content">
-        <div class="page-content">
-          <section>
-            <div class="buttons-box">
-              <input type="radio" value="move" id="bmove" name="baction" checked="checked"/><label for="bmove">Move</label>
-              <input type="radio" value="entity" id="bentity" name="baction" /><label for="bentity">New Entity</label>
-            </div>
-          </section>
-          <section>
-            <div class="drag-area"></div>
-          </section>
-        </div>
-      </main>
-    </div>
