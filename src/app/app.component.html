@@ -23,7 +23,7 @@
     <div class="panel-heading">
       <div class="btn-group">
         <button type="button" class="btn btn-default" value="move" id="bmove" name="baction">Move</button>
-        <button type="button" class="btn btn-default" value="entity" id="bentity" name="baction">New Entity</button>
+        <button type="button" class="btn btn-default" value="entity" id="bentity" name="baction" data-toggle="modal" data-target="#modal-entity">New Entity</button>
       </div>
     </div>
   </div>
@@ -34,22 +34,29 @@
   </div>
 </div>
 
-<dialog class="mdl-dialog" id="modal-entity">
-  <form class="form-entity" role="form">
-    <h4 class="mdl-dialog__title">New Entity</h4>
-    <div class="mdl-dialog__content">
-      <input type="hidden" name="id_entity" value="">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input type="text" class="mdl-textfield__input" id="entity-name" >
-        <label for="entity-name" class="mdl-textfield__label">Name:</label>
+<div id="modal-entity" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form class="form-entity" role="form">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">New Entity</h4>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="id_entity" value="">
+          <div class="form-group">
+            <label for="entity-name">Name:</label>
+            <input type="text" class="form-control" id="entity-name" placeholder="Name" >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="save-entity">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
       </div>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button type="submit" class="mdl-button" name="save-entity">Save</button>
-      <button type="button" class="mdl-button close">Close</button>
-    </div>
-  </form>
-</dialog>
+    </form>
+  </div>
+</div>
 
 
 <div id="modal-sql" class="modal fade" tabindex="-1" role="dialog">
@@ -58,11 +65,12 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">SQL</h4>
-        <div class="modal-body"><pre><code> </code></pre></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-        </div>
+      </div>
+      <div class="modal-body"><pre><code> </code></pre></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>
+</div>
 
