@@ -2,7 +2,7 @@
   width: 150px;
 }
 .drag-area {
-  border: 1px solid black;
+  border: 1px solid #CCC;
   height: 600px;
 }
 .pbuttons {
