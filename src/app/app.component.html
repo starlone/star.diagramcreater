@@ -18,18 +18,20 @@
   </div>
 </nav>
 
-<div class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <div class="btn-group">
-        <button type="button" class="btn btn-default" value="move" id="bmove" name="baction">Move</button>
-        <button type="button" class="btn btn-default" value="entity" id="bentity" name="baction" data-toggle="modal" data-target="#modal-entity">New Entity</button>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <panel-project></panel-project>
     </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-body">
-      <div class="drag-area"></div>
+    <div class="col-md-9">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Diagram
+        </div>
+        <div class="panel-body">
+          <div class="drag-area"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
