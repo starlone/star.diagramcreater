@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panel-project.component.css']
 })
 export class PanelProjectComponent implements OnInit {
+  entitys = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  newObject() {
+    this.entitys.push({
+      name: 'Teste'
+    });
+  }
 }

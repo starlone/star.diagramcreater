@@ -5,10 +5,16 @@
   <ul class="list-group">
     <li class="list-group-item">
       <div class="btn-group">
-        <button type="button" class="btn btn-default" value="entity" id="bentity" name="baction" data-toggle="modal" data-target="#modal-entity">New Entity</button>
+        <!-- <button type="button" class="btn btn-default" value="entity" id="bentity" name="baction" data-toggle="modal" data-target="#modal-entity">New Entity</button> -->
+        <button type="button" class="btn btn-default" (click)="newObject()">New Entity</button>
       </div>
     </li>
   </ul>
-  <ul class="list-group objects">
+  <ul class="list-group">
+
+    <li class="list-group-item" *ngFor="let e of entitys" >
+      <span>{{e.name}}</span>
+    </li>
+
   </ul>
 </div>
