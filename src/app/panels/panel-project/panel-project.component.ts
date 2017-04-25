@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Entity } from '../../models/entity';
 
 @Component({
   selector: 'panel-project',
@@ -15,8 +16,7 @@ export class PanelProjectComponent implements OnInit {
   }
 
   newObject() {
-    this.entitys.push({
-      name: 'Teste'
-    });
+    var entity = new Entity('Teste');
+    this.entitys.push(entity);
   }
 }
