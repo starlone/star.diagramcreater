@@ -13,6 +13,7 @@ export class AppComponent {
   };
 
   table = new Table('');
+  clicked = false;
 
   newObject() {
     this.db.tables.push(this.table);
@@ -20,5 +21,21 @@ export class AppComponent {
     this.table = new Table('');
     var pos = this.table.position;
     pos.x = 170 * this.db.tables.length;
+  }
+
+  click(clicked, table) {
+    this.clicked = clicked;
+    if (table) {
+      this.db.selected = table;
+    }
+  }
+
+  move(eve){
+    if (this.clicked) {
+      var pos = this.db.selected.position;
+      console.log('e', eve);
+      pos.x += eve.movementX;
+      pos.y += eve.movementY;
+    }
   }
 }

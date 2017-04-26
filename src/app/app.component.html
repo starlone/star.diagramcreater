@@ -29,8 +29,11 @@
           Diagram
         </div>
         <div class="panel-body">
-          <div class="drag-area">
-            <diagram-table *ngFor="let t of db.tables" [table]="t"></diagram-table>
+          <div class="drag-area" (mousemove)="move($event)"  (mouseup)="click(false)" (touchup)="click(false)">
+            <diagram-table *ngFor="let t of db.tables" [table]="t"
+              (mousedown)="click(true, t)"
+              (touchdown)="click(true, t)">
+            </diagram-table>
           </div>
         </div>
       </div>
