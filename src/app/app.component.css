@@ -1,9 +1,12 @@
-.draggable {
+.entity {
   width: 150px;
+  position: absolute;
 }
 .drag-area {
   border: 1px solid #CCC;
   height: 600px;
+  background-color: #f6f6f6;
+  position: relative;
 }
 .pbuttons {
   text-align: right;

@@ -18,5 +18,7 @@ export class AppComponent {
     this.db.tables.push(this.table);
     this.db.selected = this.table;
     this.table = new Table('');
+    var pos = this.table.position;
+    pos.x = 170 * this.db.tables.length;
   }
 }

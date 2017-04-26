@@ -29,29 +29,38 @@
           Diagram
         </div>
         <div class="panel-body">
-          <div class="drag-area"></div>
+          <div class="drag-area">
+            <div class="entity" *ngFor="let t of db.tables" [ngStyle]="{'left': t.position.x + 'px', 'top': t.position.y + 'px'}">
+              <div class="panel panel-primary">
+                <div class="panel-heading">{{t.name}}</div>
+                <div class="panel-body">
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="modal-entity" class="modal fade" tabindex="-1" role="dialog">
+<div id="modal-table" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
-    <form class="form-entity" role="form">
+    <form class="form-table" role="form">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">New Entity</h4>
+          <h4 class="modal-title" id="myModalLabel">New Table</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="entity-name">Name:</label>
-            <input type="text" [(ngModel)]="table.name" name="name" class="form-control" id="entity-name" placeholder="Name" >
+            <label for="table-name">Name:</label>
+            <input type="text" [(ngModel)]="table.name" name="name" class="form-control" id="table-name" placeholder="Name" >
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" name="save-entity" (click)="newObject()" data-dismiss="modal">Save</button>
+          <button type="submit" class="btn btn-primary" name="save-table" (click)="newObject()" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>
