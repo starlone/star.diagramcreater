@@ -30,14 +30,7 @@
         </div>
         <div class="panel-body">
           <div class="drag-area">
-            <div class="entity" *ngFor="let t of db.tables" [ngStyle]="{'left': t.position.x + 'px', 'top': t.position.y + 'px'}">
-              <div class="panel panel-primary">
-                <div class="panel-heading">{{t.name}}</div>
-                <div class="panel-body">
-                  &nbsp;
-                </div>
-              </div>
-            </div>
+            <diagram-table *ngFor="let t of db.tables" [table]="t"></diagram-table>
           </div>
         </div>
       </div>

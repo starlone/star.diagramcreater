@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PanelProjectComponent } from './panels/panel-project/panel-project.component';
+import { DiagramTableComponent } from './diagram-table/diagram-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PanelProjectComponent
+    PanelProjectComponent,
+    DiagramTableComponent
   ],
   imports: [
     BrowserModule,
