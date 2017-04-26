@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Entity } from '../../models/entity';
+import { Component, OnInit, Input } from '@angular/core';
+import { Table } from '../../models/table';
 
 @Component({
   selector: 'panel-project',
@@ -7,7 +7,7 @@ import { Entity } from '../../models/entity';
   styleUrls: ['./panel-project.component.css']
 })
 export class PanelProjectComponent implements OnInit {
-  entitys = [];
+  @Input() tables;
 
   constructor() {
   }
@@ -16,7 +16,7 @@ export class PanelProjectComponent implements OnInit {
   }
 
   newObject() {
-    var entity = new Entity('Teste');
-    this.entitys.push(entity);
+    var table = new Table('Teste');
+    this.tables.push(table);
   }
 }
