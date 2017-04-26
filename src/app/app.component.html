@@ -21,7 +21,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-3">
-      <panel-project [tables]="tables"></panel-project>
+      <panel-project [db]="db"></panel-project>
     </div>
     <div class="col-xs-9">
       <div class="panel panel-primary">
@@ -45,14 +45,13 @@
           <h4 class="modal-title" id="myModalLabel">New Entity</h4>
         </div>
         <div class="modal-body">
-          <input type="hidden" name="id_entity" value="">
           <div class="form-group">
             <label for="entity-name">Name:</label>
-            <input type="text" class="form-control" id="entity-name" placeholder="Name" >
+            <input type="text" [(ngModel)]="table.name" name="name" class="form-control" id="entity-name" placeholder="Name" >
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" name="save-entity">Save</button>
+          <button type="submit" class="btn btn-primary" name="save-entity" (click)="newObject()" data-dismiss="modal">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </div>

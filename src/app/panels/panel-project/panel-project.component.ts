@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Table } from '../../models/table';
 
 @Component({
   selector: 'panel-project',
@@ -7,7 +6,7 @@ import { Table } from '../../models/table';
   styleUrls: ['./panel-project.component.css']
 })
 export class PanelProjectComponent implements OnInit {
-  @Input() tables;
+  @Input() db;
 
   constructor() {
   }
@@ -15,8 +14,7 @@ export class PanelProjectComponent implements OnInit {
   ngOnInit() {
   }
 
-  newObject() {
-    var table = new Table('Teste');
-    this.tables.push(table);
+  select(table) {
+    this.db.selected = table;
   }
 }
