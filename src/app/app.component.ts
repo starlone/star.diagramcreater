@@ -17,7 +17,7 @@ export class AppComponent {
     this.db.tables.push(this.table);
     this.db.selected = this.table;
     this.table = new Table('');
-    var pos = this.table.position;
+    const pos = this.table.position;
     pos.x = 170 * this.db.tables.length;
   }
 
@@ -28,10 +28,9 @@ export class AppComponent {
     }
   }
 
-  move(eve){
+  move(eve) {
     if (this.clicked) {
-      var pos = this.db.selected.position;
-      console.log('e', eve);
+      const pos = this.db.selected.position;
       pos.x += eve.movementX;
       pos.y += eve.movementY;
     }

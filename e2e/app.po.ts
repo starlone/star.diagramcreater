@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class Star.DiagramcreaterPage {
+export class StarDiagramcreaterPage {
   navigateTo() {
     return browser.get('/');
   }

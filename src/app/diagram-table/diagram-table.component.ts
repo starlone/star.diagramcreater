@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'diagram-table',
+  selector: 'app-diagram-table',
   templateUrl: './diagram-table.component.html',
   styleUrls: ['./diagram-table.component.css']
 })

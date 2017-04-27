@@ -21,7 +21,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-3">
-      <panel-project [db]="db"></panel-project>
+      <app-panel-project [db]="db"></app-panel-project>
     </div>
     <div class="col-xs-9">
       <div class="panel panel-primary">
@@ -34,10 +34,10 @@
             (mouseup)="click(false)"
             (touchup)="click(false)"
             (mouseout)="click(false)">
-            <diagram-table *ngFor="let t of db.tables" [table]="t"
+            <app-diagram-table *ngFor="let t of db.tables" [table]="t"
               (mousedown)="click(true, t)"
               (touchdown)="click(true, t)">
-            </diagram-table>
+            </app-diagram-table>
           </div>
         </div>
       </div>
