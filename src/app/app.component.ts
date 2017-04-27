@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Table } from './models/table';
+import { DataBase } from './models/data-base';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,7 @@ import { Table } from './models/table';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  db = {
-    tables: [],
-    selected: null
-  };
+  db = new DataBase();
 
   table = new Table('');
   clicked = false;

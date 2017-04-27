@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataBase } from '../../models/data-base';
 
 @Component({
   selector: 'panel-project',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./panel-project.component.css']
 })
 export class PanelProjectComponent implements OnInit {
-  @Input() db;
+  @Input() db:DataBase;
 
   constructor() {
   }
