@@ -3,3 +3,7 @@
   position: absolute;
 }
 
+.entity .panel-info .panel-heading {
+  background-color: #0288D1;
+  color: white;
+}

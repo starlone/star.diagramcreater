@@ -1,8 +1,19 @@
 <div class="entity" [ngStyle]="{'left': table.position.x + 'px', 'top': table.position.y + 'px'}">
-  <div class="panel panel-primary">
+  <div class="panel" [ngClass]="{'panel-primary': !selected, 'panel-info': selected }">
     <div class="panel-heading">{{table.name}}</div>
-    <div class="panel-body">
-      &nbsp;
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of table.columns">
+          <td>{{c.type}}</td>
+          <td>{{c.name}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

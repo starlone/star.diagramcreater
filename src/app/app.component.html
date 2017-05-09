@@ -36,7 +36,8 @@
             (mouseout)="click(false)">
             <app-diagram-table *ngFor="let t of db.tables" [table]="t"
               (mousedown)="click(true, t)"
-              (touchdown)="click(true, t)">
+              (touchdown)="click(true, t)"
+              [selected]="t == db.selected">
             </app-diagram-table>
           </div>
         </div>

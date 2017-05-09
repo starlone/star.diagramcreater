@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Table } from './models/table';
+import { Column } from './models/column';
 import { DataBase } from './models/data-base';
 
 @Component({
@@ -14,6 +15,8 @@ export class AppComponent {
   clicked = false;
 
   newObject() {
+    let cid = new Column('bigserial', 'id');
+    this.table.columns.push(cid);
     this.db.tables.push(this.table);
     this.db.selected = this.table;
     this.table = new Table('');
