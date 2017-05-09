@@ -4,8 +4,8 @@ export class DataBase {
 
   getSQL() {
     let txt = '';
-    for (let i = 0; i < this.tables.length; i++) {
-      var t = this.tables[i];
+    for (const i = 0; i < this.tables.length; i++) {
+      const t = this.tables[i];
       txt += '\n' + t.getSQL();
     }
     return txt;

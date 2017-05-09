@@ -16,7 +16,7 @@ export class AppComponent {
   sql = '';
 
   newObject() {
-    let cid = new Column('bigserial', 'id');
+    const cid = new Column('bigserial', 'id');
     this.table.columns.push(cid);
     this.db.tables.push(this.table);
     this.db.selected = this.table;
