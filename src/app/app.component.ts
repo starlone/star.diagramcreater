@@ -13,6 +13,7 @@ export class AppComponent {
 
   table = new Table('');
   clicked = false;
+  sql = '';
 
   newObject() {
     let cid = new Column('bigserial', 'id');
@@ -37,5 +38,9 @@ export class AppComponent {
       pos.x += eve.movementX;
       pos.y += eve.movementY;
     }
+  }
+
+  buildSQL() {
+    this.sql = this.db.getSQL();
   }
 }

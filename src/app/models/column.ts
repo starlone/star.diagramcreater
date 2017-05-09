@@ -3,4 +3,8 @@ export class Column {
     public type: string,
     public name: string
   ) {}
+
+  getSQL() {
+    return this.name + ' ' + this.type;
+  };
 }
