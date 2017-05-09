@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DiagramTableComponent implements OnInit {
   @Input() table;
-  @Input() selected:boolean;
+  @Input() selected: boolean;
 
   constructor() { }
 
